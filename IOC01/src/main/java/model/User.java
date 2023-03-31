@@ -7,6 +7,24 @@ public class User {
     private String id;
 
 
+    public User() {
+    }
+
+    public User(String userName, String address, String id) {
+        this.userName = userName;
+        this.address = address;
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", address='" + address + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
     public String getUserName() {
         return userName;
     }

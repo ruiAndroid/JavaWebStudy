@@ -2,5 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="model.User" name="user"/>
+    <bean class="model.User" name="user2">
+        <property name="id" value="2"/>
+        <property name="address" value="address2"/>
+        <property name="userName" value="rui2"/>
+
+    </bean>
+    <bean class="factory.OkHttpFactory" factory-method="getInstance" id="okHttpClient">
+
+    </bean>
 </beans>
