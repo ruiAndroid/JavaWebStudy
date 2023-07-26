@@ -46,10 +46,15 @@ public class Main {
         myCalculator1.add(1,2);*/
 
         //aop
-        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(JavaConfig.class);
+/*        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(JavaConfig.class);
         MyCalculator myCalculator = ctx.getBean(MyCalculator.class);
         myCalculator.add(1,2);
-        myCalculator.min(1,2);
+        myCalculator.min(1,2);*/
+
+        //JDBC template
+
+
+
 
 
     }
