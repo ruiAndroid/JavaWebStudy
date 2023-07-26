@@ -2,13 +2,26 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="model.User" name="user2">
+
+    <!--构造函数属性注入-->
+    <bean class="com.model.User" id="user1">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="address" value="address1"/>
+        <constructor-arg name="userName" value="rui1"/>
+    </bean>
+
+    <!--set 方法注入-->
+    <bean class="com.model.User" id="user2">
         <property name="id" value="2"/>
         <property name="address" value="address2"/>
         <property name="userName" value="rui2"/>
 
     </bean>
-    <bean class="factory.OkHttpFactory" factory-method="getInstance" id="okHttpClient">
+
+
+    <bean class="com.factory.OkHttpFactory" factory-method="getInstance" id="okHttpClient">
 
     </bean>
+
+
 </beans>
