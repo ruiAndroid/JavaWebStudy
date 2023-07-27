@@ -3,25 +3,15 @@ package com.model;
 public class User {
 
     private String userName;
-    private String address;
-    private String id;
-
-
-    public User() {
-    }
-
-    public User(String userName, String address, String id) {
-        this.userName = userName;
-        this.address = address;
-        this.id = id;
-    }
+    private String gender;
+    private int id;
 
     @Override
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
-                ", address='" + address + '\'' +
-                ", id='" + id + '\'' +
+                ", gender='" + gender + '\'' +
+                ", id=" + id +
                 '}';
     }
 
@@ -33,19 +23,19 @@ public class User {
         this.userName = userName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getGender() {
+        return gender;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

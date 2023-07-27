@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <!--构造函数属性注入-->
-    <bean class="com.model.User" id="user1">
-        <constructor-arg name="id" value="1"/>
-        <constructor-arg name="address" value="address1"/>
-        <constructor-arg name="userName" value="rui1"/>
-    </bean>
-
-    <!--set 方法注入-->
-    <bean class="com.model.User" id="user2">
-        <property name="id" value="2"/>
-        <property name="address" value="address2"/>
-        <property name="userName" value="rui2"/>
-
-    </bean>
-
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/task"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
     <bean class="com.factory.OkHttpFactory" factory-method="getInstance" id="okHttpClient">
 
     </bean>
-
-
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <tx:annotation-driven/>
+    </bean>
+    <jdbc:embedded-database id="dataSource"/>
 </beans>

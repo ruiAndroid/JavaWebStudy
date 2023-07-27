@@ -6,7 +6,6 @@ import aop.MyCalculatorProxy;
 import com.javaconfig.JavaConfig;
 import condition.ShowCmd;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import com.services.UserService;
 
 import java.io.IOException;
 import java.util.List;

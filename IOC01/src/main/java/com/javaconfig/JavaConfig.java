@@ -1,6 +1,5 @@
 package com.javaconfig;
 
-import com.model.DataSource;
 import condition.*;
 import org.springframework.context.annotation.*;
 
@@ -26,6 +25,7 @@ public class JavaConfig {
     }
 
 
+/*
 
     @Bean("ds")
     @Profile("dev")
@@ -47,5 +47,6 @@ public class JavaConfig {
         dataSource.setPassword("rui123");
         return dataSource;
     }
+*/
 
 }
