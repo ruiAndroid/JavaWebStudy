@@ -1,10 +1,15 @@
 package com.model;
 
+import java.util.Date;
+
 public class User {
 
     private String userName;
     private String gender;
     private int id;
+
+    private Date birth;
+
 
     @Override
     public String toString() {
@@ -12,7 +17,16 @@ public class User {
                 "userName='" + userName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", id=" + id +
+                ", birth=" + birth +
                 '}';
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
     }
 
     public String getUserName() {

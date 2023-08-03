@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="UTF-8"%>
 <html>
 <body>
-<form action="/user/adduser" method="post">
+<form action="/user/adduser2" method="post">
     <table>
 
         <tr>
@@ -12,6 +12,11 @@
         <tr>
             <td>性别:</td>
             <td><input type="text" name="gender"></td>
+
+        </tr>
+        <tr>
+            <td>日期:</td>
+            <td><input type="text" name="birth"></td>
 
         </tr>
         <tr>
