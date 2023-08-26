@@ -10,14 +10,6 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-<!--    <bean class="com.factory.OkHttpFactory" factory-method="getInstance" id="okHttpClient">-->
-
-<!--    </bean>-->
-<!--    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">-->
-<!--        <property name="dataSource" ref="dataSource"/>-->
-<!--        <tx:annotation-driven/>-->
-<!--    </bean>-->
-<!--    <jdbc:embedded-database id="dataSource"/>-->
 
 
 
