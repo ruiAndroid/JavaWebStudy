@@ -7,12 +7,6 @@
         select * from user
     </select>
 
-    <update id="updateUserNameById">
-        update user set userName=#{arg0} where id=#{arg1}
-
-    </update>
-
-
     <insert id="addUser" parameterType="com.ssm2.bean.User">
 <!--        <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
 <!--            select uuid();-->

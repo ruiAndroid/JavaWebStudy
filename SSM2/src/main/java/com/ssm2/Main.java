@@ -1,11 +1,10 @@
 package com.ssm2;
 
 import com.ssm2.bean.User;
-import org.apache.ibatis.io.Resources;
+import com.ssm2.mapper.UserMapper;
+import com.ssm2.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,10 +12,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
+        SqlSessionFactory factory = SqlSessionUtils.getInstance();
+
         SqlSession sqlSession = factory.openSession();
-        List<User> users = sqlSession.selectList("com.ssm2.mapper.UserMapper.getAllUser");
-        System.out.print("adasdasds:"+users.toString());
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        userMapper.updateUserNameById("张四",1);
+
+        sqlSession.commit();
+
         sqlSession.close();
 
 
