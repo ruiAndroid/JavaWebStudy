@@ -3,22 +3,126 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm2.mapper.UserMapper">
-    <select id="getAllUser" resultType="com.ssm2.bean.User">
+    <resultMap id="UserMapper" type="com.ssm2.bean.User">
+        <id property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="gender" column="gender"/>
+
+
+    </resultMap>
+    <select id="getAllUser" resultMap="UserMapper">
         select * from user
     </select>
+
+    <select id="getUserByPage" resultMap="UserMapper">
+        select * from user
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+
+    </select>
+
+    <select id="getUserByNameOrId" parameterType="user" resultMap="UserMapper">
+        select * from user
+        where 1=1
+        <choose>
+            <when test="user.userName!=null and user.userName!=''">
+               and userName=#{user.userName}
+            </when>
+            <when test="user.gender!=null and user.gender!=''">
+               and gender=#{user.gender}
+            </when>
+            <otherwise>
+
+            </otherwise>
+
+        </choose>
+    </select>
+
+    <select id="getUserByNameOrId2" parameterType="user" resultMap="UserMapper">
+        select * from user
+        <where>
+            <if test="user.userName!=null and user.userName!=''">
+                and userName=#{user.userName}
+            </if>
+            <if test="user.gender!=null and user.gender!=''">
+                and gender=#{user.gender}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="getUserByNameOrId3" parameterType="user" resultMap="UserMapper">
+        select * from user
+        <trim prefix="where" prefixOverrides="and ">
+            <if test="user.userName!=null and user.userName!=''">
+               and userName=#{user.userName}
+            </if>
+            <if test="user.gender!=null and user.gender!=''">
+                and gender=#{user.gender}
+            </if>
+
+        </trim>
+    </select>
+
+    <select id="getUserByIds" resultMap="UserMapper">
+        select * from user where id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+
+    </select>
+
+
 
     <update id="updateUserNameById">
         update user set userName=#{arg0} where id=#{arg1}
 
     </update>
 
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+            <if test="user.userName!=null">
+                userName=#{user.userName},
+            </if>
+            <if test="user.gender!=null">
+                gender=#{user.gender},
+            </if>
+        </set>
+        where id=#{user.id}
+    </update>
 
-    <insert id="addUser" parameterType="com.ssm2.bean.User">
+    <insert id="addUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
 <!--        <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
 <!--            select uuid();-->
 <!--        </selectKey>-->
 
-        insert into user (userName,gender) values (#{userName},#{gender})
+        insert into user (userName,gender,favorites) values (#{user.userName},#{user.gender},#{user.favorites,typeHandler=com.ssm2.converter.List2VarcharHandler})
 
     </insert>
+
+    <insert id="batchAddUser">
+        insert into user (id,userName,gender) values
+        <foreach collection="users" separator="," item="user">
+            (#{user.id},#{user.userName},#{user.gender})
+        </foreach>
+    </insert>
+
+    <resultMap id="BaseUserMap" type="com.ssm2.bean.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+    </resultMap>
+    
+    <resultMap id="UserMapWithRole" type="com.ssm2.bean.User" extends="BaseUserMap">
+        <collection property="roles" ofType="com.ssm2.bean.Role" resultMap="com.ssm2.mapper.RoleMapper.BaseRoleMap">
+
+        </collection>
+    </resultMap>
+    
+    <select id="getAllUserWithRole" resultMap="UserMapWithRole">
+        SELECT * FROM USER u,user_role ur,role r WHERE u.`id`=ur.`uid` AND ur.`rid`=r.`id`
+    </select>
+
 </mapper>

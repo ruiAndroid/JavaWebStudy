@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm2.mapper.BookMapper">
+
+    <resultMap id="BookWithAuthor" type="com.ssm2.bean.Book">
+        <id column="id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
+        <association property="author" javaType="com.ssm2.bean.Author" resultMap="com.ssm2.mapper.AuthorMapper.AuthorMapper">
+
+        </association>
+    </resultMap>
+
+    <resultMap id="BookWithAuthor2" type="com.ssm2.bean.Book">
+        <id column="id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
+        <association property="author" javaType="com.ssm2.bean.Author" select="com.ssm2.mapper.BookMapper.getAuthorById" column="aid" fetchType="lazy">
+
+        </association>
+    </resultMap>
+
+    
+    <select id="getBookByAuthorFirstName" resultMap="BookWithAuthor" databaseId="mysql">
+        <bind name="authorLike" value="author+'%'"/>
+        select * from book where author like #{authorLike}
+
+    </select>
+    
+    <select id="getBookById" resultMap="BookWithAuthor">
+        select b.*, a.`id` as author_id, a.`author_name` as author_name,a.`author_age` as author_age  from book b ,author a where b.`aid`=a.`id` AND b.`id`=#{id}
+    </select>
+
+    <select id="getBookById2" resultMap="BookWithAuthor2" >
+        select  * from book where id=#{id}
+    </select>
+
+    <select id="getAuthorById" resultType="com.ssm2.bean.Author">
+        select * from author where id=#{aid}
+    </select>
+</mapper>
