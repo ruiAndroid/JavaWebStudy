@@ -1,9 +1,10 @@
 package com.ssm2.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.LongStream;
 
-public class User {
+public class User implements Serializable {
 
     private Integer id;
     private String username;
