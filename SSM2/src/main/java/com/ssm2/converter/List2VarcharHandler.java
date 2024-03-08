@@ -16,6 +16,7 @@ import java.util.List;
 @MappedTypes(List.class)    //指定要处理的Java类型
 public class List2VarcharHandler implements TypeHandler<List<String>> {
 
+    //设置数据
     @Override
     public void setParameter(PreparedStatement preparedStatement, int i, List<String> strings, JdbcType jdbcType) throws SQLException {
         StringBuffer sb =new StringBuffer();
@@ -27,6 +28,7 @@ public class List2VarcharHandler implements TypeHandler<List<String>> {
 
     }
 
+    //查询数据时处理
     @Override
     public List<String> getResult(ResultSet resultSet, String s) throws SQLException {
         String favs=resultSet.getString(s);

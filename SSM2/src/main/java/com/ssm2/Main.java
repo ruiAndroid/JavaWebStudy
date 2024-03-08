@@ -31,6 +31,7 @@ public class Main {
 
         List<User> users=userMapper.getAllUserWithRole();
         System.out.print(users.toString());
+
         sqlSession.commit();
 
         sqlSession.close();

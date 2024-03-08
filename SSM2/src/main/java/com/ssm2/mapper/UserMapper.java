@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserMapper {
 
     Integer addUser(@Param("user") User user);
+    Integer addUser2(@Param("user") User user);
     List<User> getAllUser();
     List<User> getUserByPage(@Param("start") Integer start,@Param("size") Integer size);
 
@@ -21,6 +22,7 @@ public interface UserMapper {
     Integer batchAddUser(@Param("users") List<User> users);
 
     List<User> getAllUserWithRole();
+    List<User> getAllUserWithRole2();
 
 
 

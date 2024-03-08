@@ -9,7 +9,13 @@ public class User {
     private String username;
     private String password;
 
+    private boolean enable;
+
+
     private List<Role> roles;
+
+    private List<String> favorites;
+
 
     @Override
     public String toString() {
@@ -17,9 +23,12 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", enable=" + enable +
                 ", roles=" + roles +
+                ", favorites=" + favorites +
                 '}';
     }
+
 
     public Integer getId() {
         return id;
@@ -45,11 +54,27 @@ public class User {
         this.password = password;
     }
 
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+
     public List<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<String> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<String> favorites) {
+        this.favorites = favorites;
     }
 }

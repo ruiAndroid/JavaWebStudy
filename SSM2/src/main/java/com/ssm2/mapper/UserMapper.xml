@@ -113,6 +113,8 @@
         <id property="id" column="id"></id>
         <result property="username" column="username"></result>
         <result property="password" column="password"></result>
+        <result property="enable" column="enable"></result>
+        <result property="favorites" column="favorites" typeHandler="com.ssm2.converter.List2VarcharHandler"></result>
     </resultMap>
     
     <resultMap id="UserMapWithRole" type="com.ssm2.bean.User" extends="BaseUserMap">
@@ -120,9 +122,23 @@
 
         </collection>
     </resultMap>
-    
+
+    <resultMap id="UserMapWithRole2" type="com.ssm2.bean.User" >
+        <discriminator javaType="int" column="enable">
+            <case value="1" resultMap="UserMapWithRole"></case>
+            <case value="0" resultMap="BaseUserMap"></case>
+        </discriminator>
+    </resultMap>
+
     <select id="getAllUserWithRole" resultMap="UserMapWithRole">
         SELECT * FROM USER u,user_role ur,role r WHERE u.`id`=ur.`uid` AND ur.`rid`=r.`id`
     </select>
 
+    <select id="getAllUserWithRole2" resultMap="UserMapWithRole2">
+        SELECT * FROM USER u,user_role ur,role r WHERE u.`id`=ur.`uid` AND ur.`rid`=r.`id`
+    </select>
+
+    <insert id="addUser2" parameterType="user" >
+        insert into user (username,password,favorites) values (#{user.username},#{user.password},#{user.favorites,typeHandler=com.ssm2.converter.List2VarcharHandler})
+    </insert>
 </mapper>
