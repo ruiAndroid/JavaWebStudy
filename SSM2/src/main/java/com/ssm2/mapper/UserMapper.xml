@@ -8,8 +8,8 @@
 
     <resultMap id="UserMapper" type="com.ssm2.bean.User">
         <id property="id" column="id"/>
-        <result property="userName" column="userName"/>
-        <result property="gender" column="gender"/>
+        <result property="username" column="userName"/>
+
 
 
     </resultMap>

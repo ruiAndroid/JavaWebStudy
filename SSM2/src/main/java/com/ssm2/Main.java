@@ -29,7 +29,7 @@ public class Main {
 //        int age=book.getAuthor().getAuthorAge();
 //        System.out.print(age);
 
-        List<User> users=userMapper.getAllUserWithRole();
+        List<User> users=userMapper.getAllUser();
         System.out.print(users.toString());
 
         sqlSession.commit();
